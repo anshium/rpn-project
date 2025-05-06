@@ -10,8 +10,8 @@ import re
 import os
 
 
-class RobotEnvironment:
-    def __init__(self, gui = True, timestep = 1/480, manipulator = True, base_position = (0,0,0), benchmarking = False):
+class MechRoboEnv:
+    def __init__(self, gui = True, timestep = 1/480, base_position = (0,0,0), benchmarking = False):
 
         self.n = 50
         self.c = 7
@@ -207,14 +207,6 @@ class RobotEnvironment:
 
         for obj_id in self.link_bounding_objs:
             self.client_id.removeBody(obj_id)
-    
-    def get_joint_positions(self):
-
-        return np.array([self.client_id.getJointState(self.manipulator, i)[0] for i in self.joints])
-    
-    def get_joint_velocities(self):
-
-        return np.array([self.client_id.getJointState(self.manipulator, i)[1] for i in self.joints])
     
     def draw_frame(self, transform, scale_factor = 0.2):
 
